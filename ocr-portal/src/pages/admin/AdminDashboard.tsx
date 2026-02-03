@@ -37,45 +37,45 @@ export function AdminDashboard() {
       <div className="space-y-6">
         {/* 1. Page Header - FIXED STRUCTURE */}
         <div>
-          <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
+          <h1 className="text-3xl font-semibold">관리자 대시보드</h1>
           <p className="text-muted-foreground mt-2">
-            System overview and monitoring dashboard
+            시스템 개요 및 모니터링 대시보드
           </p>
         </div>
 
         {/* 2. Metrics Cards - FIXED GRID: grid-cols-4 gap-6 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
-            title="Total Users"
+            title="총 사용자 수"
             value="1,247"
             change="+18.2%"
             icon={<Users className="w-4 h-4" />}
             trend="up"
-            subtitle="Active users"
+            subtitle="활성 사용자"
           />
           <MetricCard
-            title="Total Files"
+            title="총 파일 수"
             value="12,548"
             change="+245"
             icon={<FileText className="w-4 h-4" />}
             trend="up"
-            subtitle="Uploaded this month"
+            subtitle="이번 달 업로드됨"
           />
           <MetricCard
-            title="Active Jobs"
+            title="활성 작업"
             value="34"
-            change="12 pending"
+            change="12개 대기 중"
             icon={<Activity className="w-4 h-4" />}
             trend="neutral"
-            subtitle="Currently processing"
+            subtitle="현재 처리 중"
           />
           <MetricCard
-            title="Failed Jobs"
+            title="실패한 작업"
             value="8"
-            change="-3 from yesterday"
+            change="어제보다 -3"
             icon={<AlertCircle className="w-4 h-4" />}
             trend="down"
-            subtitle="Requires attention"
+            subtitle="조치 필요"
           />
         </div>
 
@@ -83,31 +83,31 @@ export function AdminDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Job Status Distribution Chart */}
           <div className="border rounded-lg p-6 bg-card">
-            <h2 className="text-xl font-semibold mb-4">Job Status Distribution</h2>
+            <h2 className="text-xl font-semibold mb-4">작업 상태 분포</h2>
             <div className="space-y-4">
               <JobStatusBar
-                label="Completed"
+                label="완료됨"
                 count={1247}
                 percentage={82}
                 color="bg-success"
                 icon={<CheckCircle className="w-4 h-4 text-success" />}
               />
               <JobStatusBar
-                label="Processing"
+                label="처리 중"
                 count={34}
                 percentage={2}
                 color="bg-primary"
                 icon={<Clock className="w-4 h-4 text-primary" />}
               />
               <JobStatusBar
-                label="Pending"
+                label="대기 중"
                 count={195}
                 percentage={13}
                 color="bg-warning"
                 icon={<Activity className="w-4 h-4 text-warning" />}
               />
               <JobStatusBar
-                label="Failed"
+                label="실패"
                 count={45}
                 percentage={3}
                 color="bg-destructive"
@@ -118,17 +118,17 @@ export function AdminDashboard() {
 
           {/* Upload Trends Chart */}
           <div className="border rounded-lg p-6 bg-card">
-            <h2 className="text-xl font-semibold mb-4">Upload Trends</h2>
+            <h2 className="text-xl font-semibold mb-4">업로드 동향</h2>
             <div className="space-y-4">
-              <TrendItem period="Today" count={127} change="+15%" trend="up" />
-              <TrendItem period="This Week" count={845} change="+23%" trend="up" />
-              <TrendItem period="This Month" count={3240} change="+18%" trend="up" />
-              <TrendItem period="Last Month" count={2748} change="-5%" trend="down" />
+              <TrendItem period="오늘" count={127} change="+15%" trend="up" />
+              <TrendItem period="이번 주" count={845} change="+23%" trend="up" />
+              <TrendItem period="이번 달" count={3240} change="+18%" trend="up" />
+              <TrendItem period="지난 달" count={2748} change="-5%" trend="down" />
             </div>
             <div className="mt-6 pt-4 border-t">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Average per day</span>
-                <span className="font-semibold">108 files</span>
+                <span className="text-muted-foreground">일평균</span>
+                <span className="font-semibold">108개 파일</span>
               </div>
             </div>
           </div>
@@ -136,25 +136,25 @@ export function AdminDashboard() {
 
         {/* 4. Recent Activity Table - FIXED STRUCTURE */}
         <div className="border rounded-lg p-6 bg-card">
-          <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+          <h2 className="text-xl font-semibold mb-4">최근 활동</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
-                    User
+                    사용자
                   </th>
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
-                    Action
+                    작업
                   </th>
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
-                    Resource
+                    리소스
                   </th>
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
-                    Status
+                    상태
                   </th>
                   <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
-                    Time
+                    시간
                   </th>
                 </tr>
               </thead>
@@ -259,7 +259,7 @@ function JobStatusBar({ label, count, percentage, color, icon }: JobStatusBarPro
           <span className="text-sm font-medium">{label}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-muted-foreground">{count} jobs</span>
+          <span className="text-sm text-muted-foreground">{count}개 작업</span>
           <span className="text-sm font-semibold">{percentage}%</span>
         </div>
       </div>
@@ -289,7 +289,7 @@ function TrendItem({ period, count, change, trend }: TrendItemProps) {
     <div className="flex items-center justify-between py-2">
       <span className="text-sm font-medium">{period}</span>
       <div className="flex items-center gap-4">
-        <span className="text-sm text-muted-foreground">{count.toLocaleString()} files</span>
+        <span className="text-sm text-muted-foreground">{count.toLocaleString()}개 파일</span>
         <div className={`flex items-center gap-1 ${trendColor}`}>
           <TrendIcon className="w-3 h-3" />
           <span className="text-sm font-semibold">{change}</span>
@@ -307,19 +307,19 @@ interface StatusBadgeProps {
 function StatusBadge({ status }: StatusBadgeProps) {
   const config = {
     success: {
-      label: 'Success',
+      label: '성공',
       className: 'bg-success/10 text-success border-success/20',
     },
     processing: {
-      label: 'Processing',
+      label: '처리 중',
       className: 'bg-primary/10 text-primary border-primary/20',
     },
     failed: {
-      label: 'Failed',
+      label: '실패',
       className: 'bg-destructive/10 text-destructive border-destructive/20',
     },
     pending: {
-      label: 'Pending',
+      label: '대기 중',
       className: 'bg-warning/10 text-warning border-warning/20',
     },
   }
@@ -339,59 +339,59 @@ function StatusBadge({ status }: StatusBadgeProps) {
 const recentActivities = [
   {
     user: 'John Smith',
-    action: 'Triggered OCR extraction',
+    action: 'OCR 추출 트리거',
     resource: 'document_2024_report.pdf',
     status: 'success' as const,
-    time: '2 minutes ago',
+    time: '2분 전',
   },
   {
     user: 'Sarah Johnson',
-    action: 'Uploaded file',
+    action: '파일 업로드',
     resource: 'invoice_march.pdf',
     status: 'processing' as const,
-    time: '5 minutes ago',
+    time: '5분 전',
   },
   {
     user: 'Mike Wilson',
-    action: 'Downloaded images',
+    action: '이미지 다운로드',
     resource: 'presentation_slides.pdf',
     status: 'success' as const,
-    time: '12 minutes ago',
+    time: '12분 전',
   },
   {
     user: 'Emily Davis',
-    action: 'Triggered image extraction',
+    action: '이미지 추출 트리거',
     resource: 'brochure_2024.pdf',
     status: 'failed' as const,
-    time: '18 minutes ago',
+    time: '18분 전',
   },
   {
     user: 'Robert Brown',
-    action: 'Uploaded file',
+    action: '파일 업로드',
     resource: 'contract_draft.pdf',
     status: 'pending' as const,
-    time: '25 minutes ago',
+    time: '25분 전',
   },
   {
     user: 'Lisa Anderson',
-    action: 'Viewed OCR results',
+    action: 'OCR 결과 조회',
     resource: 'annual_report_2023.pdf',
     status: 'success' as const,
-    time: '34 minutes ago',
+    time: '34분 전',
   },
   {
     user: 'David Martinez',
-    action: 'Retried failed job',
+    action: '실패한 작업 재시도',
     resource: 'scanned_document.pdf',
     status: 'processing' as const,
-    time: '45 minutes ago',
+    time: '45분 전',
   },
   {
     user: 'Jennifer Taylor',
-    action: 'Downloaded text file',
+    action: '텍스트 파일 다운로드',
     resource: 'meeting_notes.pdf',
     status: 'success' as const,
-    time: '1 hour ago',
+    time: '1시간 전',
   },
 ]
 

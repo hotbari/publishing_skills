@@ -75,16 +75,16 @@ const MOCK_AUDIT_LOGS: AuditLog[] = [
 ]
 
 const ACTION_OPTIONS = [
-  { value: 'all', label: 'All Actions' },
-  { value: 'upload', label: 'Upload' },
-  { value: 'run_ocr', label: 'OCR Extraction' },
-  { value: 'run_image_extract', label: 'Image Extraction' },
-  { value: 'view_text', label: 'View Text' },
-  { value: 'download_text', label: 'Download Text' },
-  { value: 'view_image', label: 'View Image' },
-  { value: 'download_image', label: 'Download Image' },
-  { value: 'delete_file', label: 'Delete File' },
-  { value: 'change_policy', label: 'Change Policy' },
+  { value: 'all', label: '모든 작업' },
+  { value: 'upload', label: '업로드' },
+  { value: 'run_ocr', label: 'OCR 추출' },
+  { value: 'run_image_extract', label: '이미지 추출' },
+  { value: 'view_text', label: '텍스트 보기' },
+  { value: 'download_text', label: '텍스트 다운로드' },
+  { value: 'view_image', label: '이미지 보기' },
+  { value: 'download_image', label: '이미지 다운로드' },
+  { value: 'delete_file', label: '파일 삭제' },
+  { value: 'change_policy', label: '정책 변경' },
 ]
 
 export default function AuditLogPage() {
@@ -146,7 +146,7 @@ export default function AuditLogPage() {
 
   // Export logs as CSV
   const handleExportLogs = () => {
-    const headers = ['Timestamp', 'User', 'Action', 'Target', 'Result', 'IP Address']
+    const headers = ['시간', '사용자', '작업', '대상', '결과', 'IP 주소']
     const rows = filteredLogs.map((log) => [
       formatTimestamp(log.timestamp),
       log.user,
@@ -174,33 +174,33 @@ export default function AuditLogPage() {
 
   const columns: ColumnDef<AuditLog, any>[] = [
     columnHelper.accessor('timestamp', {
-      header: 'Timestamp',
+      header: '시간',
       cell: (info) => (
         <span className="text-sm">{formatTimestamp(info.getValue())}</span>
       ),
       size: 180,
     }),
     columnHelper.accessor('user', {
-      header: 'User',
+      header: '사용자',
       cell: (info) => <span className="text-sm">{info.getValue()}</span>,
       size: 160,
     }),
     columnHelper.accessor('action', {
-      header: 'Action',
+      header: '작업',
       cell: (info) => (
         <span className="text-sm font-medium">{getActionLabel(info.getValue())}</span>
       ),
       size: 140,
     }),
     columnHelper.accessor('target', {
-      header: 'Target',
+      header: '대상',
       cell: (info) => (
         <span className="text-sm text-muted-foreground">{info.getValue()}</span>
       ),
       size: 140,
     }),
     columnHelper.accessor('result', {
-      header: 'Result',
+      header: '결과',
       cell: (info) => (
         <span className={`text-sm font-medium capitalize ${getResultColor(info.getValue())}`}>
           {info.getValue()}
@@ -210,14 +210,14 @@ export default function AuditLogPage() {
     }),
     columnHelper.display({
       id: 'actions',
-      header: 'Actions',
+      header: '작업',
       cell: (info) => (
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setSelectedLog(info.row.original)}
         >
-          View Details
+          상세 보기
         </Button>
       ),
       size: 140,
@@ -230,14 +230,14 @@ export default function AuditLogPage() {
         {/* Page Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">Audit Logs</h1>
+            <h1 className="text-3xl font-semibold">감사 로그</h1>
             <p className="text-muted-foreground mt-2">
-              Monitor system activities and user actions
+              시스템 활동 및 사용자 작업 모니터링
             </p>
           </div>
           <Button onClick={handleExportLogs}>
             <Download className="w-4 h-4 mr-2" />
-            Export Logs
+            로그 내보내기
           </Button>
         </div>
 
@@ -247,7 +247,7 @@ export default function AuditLogPage() {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Search by user, target, or log ID..."
+                placeholder="사용자, 대상 또는 로그 ID로 검색..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -258,7 +258,7 @@ export default function AuditLogPage() {
               onClick={() => setShowFilters(!showFilters)}
             >
               <Filter className="w-4 h-4 mr-2" />
-              Filters
+              필터
               {(selectedAction !== 'all' || selectedUser !== '') && (
                 <span className="ml-2 inline-flex items-center justify-center bg-primary text-primary-foreground text-xs rounded-full w-5 h-5">
                   {(selectedAction !== 'all' ? 1 : 0) + (selectedUser !== '' ? 1 : 0)}
@@ -274,7 +274,7 @@ export default function AuditLogPage() {
                 {/* Action Filter */}
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Action
+                    작업
                   </label>
                   <select
                     value={selectedAction}
@@ -292,14 +292,14 @@ export default function AuditLogPage() {
                 {/* User Filter */}
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    User
+                    사용자
                   </label>
                   <select
                     value={selectedUser}
                     onChange={(e) => setSelectedUser(e.target.value)}
                     className="w-full h-10 px-4 rounded-md border border-input bg-background text-sm"
                   >
-                    <option value="">All Users</option>
+                    <option value="">전체 사용자</option>
                     {uniqueUsers.map((user) => (
                       <option key={user} value={user}>
                         {user}
@@ -311,13 +311,13 @@ export default function AuditLogPage() {
                 {/* Date Range - Note: Simplified for this implementation */}
                 <div>
                   <label className="text-sm font-medium mb-2 block">
-                    Date Range
+                    기간
                   </label>
                   <Input
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    placeholder="Start date"
+                    placeholder="시작일"
                   />
                 </div>
               </div>
@@ -334,7 +334,7 @@ export default function AuditLogPage() {
                     setEndDate('')
                   }}
                 >
-                  Reset Filters
+                  필터 초기화
                 </Button>
               </div>
             </div>
@@ -343,7 +343,7 @@ export default function AuditLogPage() {
 
         {/* Results Count */}
         <div className="text-sm text-muted-foreground">
-          Showing {filteredLogs.length} of {MOCK_AUDIT_LOGS.length} logs
+          전체 {MOCK_AUDIT_LOGS.length}개 중 {filteredLogs.length}개 로그 표시
         </div>
 
         {/* Table */}
@@ -361,7 +361,7 @@ export default function AuditLogPage() {
         className="max-w-2xl"
       >
         <ModalHeader>
-          <ModalTitle>Audit Log Details</ModalTitle>
+          <ModalTitle>감사 로그 상세</ModalTitle>
           <ModalClose onClose={() => setSelectedLog(null)} />
         </ModalHeader>
         {selectedLog && (
@@ -371,7 +371,7 @@ export default function AuditLogPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      Timestamp
+                      시간
                     </p>
                     <p className="text-sm font-medium">
                       {formatTimestamp(selectedLog.timestamp)}
@@ -379,7 +379,7 @@ export default function AuditLogPage() {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      User
+                      사용자
                     </p>
                     <p className="text-sm font-medium">{selectedLog.user}</p>
                   </div>
@@ -388,7 +388,7 @@ export default function AuditLogPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      Action
+                      작업
                     </p>
                     <p className="text-sm font-medium">
                       {getActionLabel(selectedLog.action)}
@@ -396,7 +396,7 @@ export default function AuditLogPage() {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      Target
+                      대상
                     </p>
                     <p className="text-sm font-medium">{selectedLog.target}</p>
                   </div>
@@ -405,7 +405,7 @@ export default function AuditLogPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      Result
+                      결과
                     </p>
                     <p className={`text-sm font-medium capitalize ${getResultColor(selectedLog.result)}`}>
                       {selectedLog.result}
@@ -413,7 +413,7 @@ export default function AuditLogPage() {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      IP Address
+                      IP 주소
                     </p>
                     <p className="text-sm font-medium">{selectedLog.ipAddress}</p>
                   </div>
@@ -421,7 +421,7 @@ export default function AuditLogPage() {
 
                 <div>
                   <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                    User Agent
+                    사용자 에이전트
                   </p>
                   <p className="text-sm font-mono text-muted-foreground break-all">
                     {selectedLog.userAgent}
@@ -431,7 +431,7 @@ export default function AuditLogPage() {
                 {selectedLog.details && (
                   <div>
                     <p className="text-xs font-medium text-muted-foreground uppercase mb-1">
-                      Details
+                      상세
                     </p>
                     <p className="text-sm">{selectedLog.details}</p>
                   </div>
@@ -440,7 +440,7 @@ export default function AuditLogPage() {
             </ModalBody>
             <ModalFooter>
               <Button variant="outline" onClick={() => setSelectedLog(null)}>
-                Close
+                닫기
               </Button>
             </ModalFooter>
           </>

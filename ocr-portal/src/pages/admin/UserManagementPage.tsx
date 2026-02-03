@@ -130,14 +130,14 @@ export default function UserManagementPage() {
         {/* Page Header - FIXED STRUCTURE */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">Users</h1>
+            <h1 className="text-3xl font-semibold">사용자</h1>
             <p className="text-muted-foreground mt-2">
-              Manage user accounts and permissions
+              사용자 계정 및 권한 관리
             </p>
           </div>
           <Button size="md" onClick={handleCreateUser}>
             <Plus className="w-4 h-4 mr-2" />
-            Create User
+            사용자 생성
           </Button>
         </div>
 
@@ -146,7 +146,7 @@ export default function UserManagementPage() {
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Search by username or email..."
+              placeholder="사용자명 또는 이메일로 검색..."
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value)
@@ -164,9 +164,9 @@ export default function UserManagementPage() {
               }}
               className="px-4 h-10 border border-input rounded-md bg-background text-sm"
             >
-              <option value="all">All Roles</option>
-              <option value="USER">User</option>
-              <option value="ADMIN">Admin</option>
+              <option value="all">전체 역할</option>
+              <option value="USER">사용자</option>
+              <option value="ADMIN">관리자</option>
             </select>
           </div>
         </div>
@@ -176,12 +176,12 @@ export default function UserManagementPage() {
           <table className="w-full">
             <thead className="border-b bg-muted/50">
               <tr>
-                <th className="text-left p-4 font-medium">Username</th>
-                <th className="text-left p-4 font-medium">Email</th>
-                <th className="text-left p-4 font-medium">Role</th>
-                <th className="text-left p-4 font-medium">Status</th>
-                <th className="text-left p-4 font-medium">Created</th>
-                <th className="text-left p-4 font-medium">Actions</th>
+                <th className="text-left p-4 font-medium">사용자명</th>
+                <th className="text-left p-4 font-medium">이메일</th>
+                <th className="text-left p-4 font-medium">역할</th>
+                <th className="text-left p-4 font-medium">상태</th>
+                <th className="text-left p-4 font-medium">생성일</th>
+                <th className="text-left p-4 font-medium">작업</th>
               </tr>
             </thead>
             <tbody>
@@ -212,7 +212,7 @@ export default function UserManagementPage() {
                             : 'text-muted-foreground'
                         }
                       >
-                        {user.status === 'active' ? 'Active' : 'Inactive'}
+                        {user.status === 'active' ? '활성' : '비활성'}
                       </span>
                     </td>
                     <td className="p-4 text-sm text-muted-foreground">
@@ -243,7 +243,7 @@ export default function UserManagementPage() {
               ) : (
                 <tr>
                   <td colSpan={6} className="p-4 text-center text-muted-foreground">
-                    No users found
+                    사용자를 찾을 수 없습니다
                   </td>
                 </tr>
               )}
@@ -254,9 +254,8 @@ export default function UserManagementPage() {
         {/* Pagination - FIXED STRUCTURE */}
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">
-            Showing {paginatedUsers.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0}-
-            {Math.min(currentPage * itemsPerPage, filteredUsers.length)} of{' '}
-            {filteredUsers.length} users
+            전체 {filteredUsers.length}명 중 {paginatedUsers.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0}-
+            {Math.min(currentPage * itemsPerPage, filteredUsers.length)}명 표시
           </p>
           <div className="flex gap-2">
             <Button
@@ -265,7 +264,7 @@ export default function UserManagementPage() {
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(currentPage - 1)}
             >
-              Previous
+              이전
             </Button>
             <Button
               variant="outline"
@@ -273,7 +272,7 @@ export default function UserManagementPage() {
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage(currentPage + 1)}
             >
-              Next
+              다음
             </Button>
           </div>
         </div>
@@ -284,46 +283,46 @@ export default function UserManagementPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-background rounded-lg shadow-lg p-6 max-w-md w-full mx-4">
             <h2 className="text-2xl font-semibold mb-4">
-              {editingUser ? 'Edit User' : 'Create User'}
+              {editingUser ? '사용자 수정' : '사용자 생성'}
             </h2>
 
             <div className="space-y-4">
               <div>
-                <label className="text-sm font-medium">Username</label>
+                <label className="text-sm font-medium">사용자명</label>
                 <Input
-                  placeholder="Enter username"
+                  placeholder="사용자명을 입력하세요"
                   defaultValue={editingUser?.username}
                   className="mt-1"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium">Email</label>
+                <label className="text-sm font-medium">이메일</label>
                 <Input
                   type="email"
-                  placeholder="Enter email"
+                  placeholder="이메일을 입력하세요"
                   defaultValue={editingUser?.email}
                   className="mt-1"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium">Role</label>
+                <label className="text-sm font-medium">역할</label>
                 <select
                   defaultValue={editingUser?.role || 'USER'}
                   className="w-full px-4 py-2 mt-1 border border-input rounded-md bg-background text-sm"
                 >
-                  <option value="USER">User</option>
-                  <option value="ADMIN">Admin</option>
+                  <option value="USER">사용자</option>
+                  <option value="ADMIN">관리자</option>
                 </select>
               </div>
 
               {!editingUser && (
                 <div>
-                  <label className="text-sm font-medium">Password</label>
+                  <label className="text-sm font-medium">비밀번호</label>
                   <Input
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="비밀번호를 입력하세요"
                     className="mt-1"
                   />
                 </div>
@@ -336,10 +335,10 @@ export default function UserManagementPage() {
                 className="flex-1"
                 onClick={handleCloseModal}
               >
-                Cancel
+                취소
               </Button>
               <Button className="flex-1" onClick={handleSaveUser}>
-                {editingUser ? 'Save Changes' : 'Create User'}
+                {editingUser ? '변경사항 저장' : '사용자 생성'}
               </Button>
             </div>
           </div>

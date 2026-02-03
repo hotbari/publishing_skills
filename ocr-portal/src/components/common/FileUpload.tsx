@@ -43,7 +43,7 @@ export function FileUpload({
 
   const validateFile = (file: File): string | null => {
     if (file.size > maxSize) {
-      return `File size exceeds ${(maxSize / 1024 / 1024).toFixed(0)}MB limit`
+      return `파일 크기가 ${(maxSize / 1024 / 1024).toFixed(0)}MB 제한을 초과합니다`
     }
     // Additional validation can be added here
     return null
@@ -58,7 +58,7 @@ export function FileUpload({
 
     // Check max files
     if (uploadedFiles.length + fileArray.length > maxFiles) {
-      alert(`Maximum ${maxFiles} files allowed`)
+      alert(`최대 ${maxFiles}개 파일만 허용됩니다`)
       return
     }
 
@@ -169,10 +169,10 @@ export function FileUpload({
           </div>
           <div className="space-y-2">
             <p className="text-sm font-medium text-foreground">
-              {isDragging ? 'Drop files here' : 'Click to upload or drag and drop'}
+              {isDragging ? '여기에 파일을 놓으세요' : '클릭하여 업로드하거나 드래그 앤 드롭'}
             </p>
             <p className="text-sm text-muted-foreground">
-              Maximum {maxFiles} files, up to {(maxSize / 1024 / 1024).toFixed(0)}MB each
+              최대 {maxFiles}개 파일, 각 {(maxSize / 1024 / 1024).toFixed(0)}MB까지
             </p>
           </div>
         </div>
@@ -208,7 +208,7 @@ export function FileUpload({
                   <p className="text-sm text-destructive">{uploadedFile.error}</p>
                 )}
                 {uploadedFile.status === 'success' && (
-                  <p className="text-sm text-success">Upload complete</p>
+                  <p className="text-sm text-success">업로드 완료</p>
                 )}
               </div>
               <button
@@ -216,7 +216,7 @@ export function FileUpload({
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="h-5 w-5" />
-                <span className="sr-only">Remove file</span>
+                <span className="sr-only">파일 제거</span>
               </button>
             </div>
           ))}

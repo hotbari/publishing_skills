@@ -321,9 +321,9 @@ export default function JobMonitoringPage() {
         {/* Page Header - FIXED STRUCTURE */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">Job Monitoring</h1>
+            <h1 className="text-3xl font-semibold">작업 모니터링</h1>
             <p className="text-muted-foreground mt-2">
-              Monitor and manage OCR processing jobs
+              OCR 처리 작업 모니터링 및 관리
             </p>
           </div>
         </div>
@@ -334,7 +334,7 @@ export default function JobMonitoringPage() {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Search by job ID or file name..."
+                placeholder="작업 ID 또는 파일명으로 검색..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value)
@@ -354,11 +354,11 @@ export default function JobMonitoringPage() {
               }}
               className="px-4 h-10 border border-input rounded-md bg-background text-sm"
             >
-              <option value="all">All Statuses</option>
-              <option value="pending">Pending</option>
-              <option value="processing">Processing</option>
-              <option value="completed">Completed</option>
-              <option value="failed">Failed</option>
+              <option value="all">전체 상태</option>
+              <option value="pending">대기 중</option>
+              <option value="processing">처리 중</option>
+              <option value="completed">완료됨</option>
+              <option value="failed">실패</option>
             </select>
 
             <select
@@ -369,14 +369,14 @@ export default function JobMonitoringPage() {
               }}
               className="px-4 h-10 border border-input rounded-md bg-background text-sm"
             >
-              <option value="all">All Types</option>
-              <option value="OCR_TEXT">OCR Text</option>
-              <option value="IMAGE_EXTRACTION">Image Extraction</option>
+              <option value="all">전체 유형</option>
+              <option value="OCR_TEXT">OCR 텍스트</option>
+              <option value="IMAGE_EXTRACTION">이미지 추출</option>
             </select>
 
             <div className="flex-1 min-w-[200px] relative">
               <Input
-                placeholder="Filter by user..."
+                placeholder="사용자로 필터링..."
                 value={userFilter}
                 onChange={(e) => {
                   setUserFilter(e.target.value)
@@ -392,13 +392,13 @@ export default function JobMonitoringPage() {
           <table className="w-full">
             <thead className="border-b bg-muted/50">
               <tr>
-                <th className="text-left p-4 font-medium">Job ID</th>
-                <th className="text-left p-4 font-medium">File</th>
-                <th className="text-left p-4 font-medium">Type</th>
-                <th className="text-left p-4 font-medium">Status</th>
-                <th className="text-left p-4 font-medium">User</th>
-                <th className="text-left p-4 font-medium">Created</th>
-                <th className="text-left p-4 font-medium">Actions</th>
+                <th className="text-left p-4 font-medium">작업 ID</th>
+                <th className="text-left p-4 font-medium">파일</th>
+                <th className="text-left p-4 font-medium">유형</th>
+                <th className="text-left p-4 font-medium">상태</th>
+                <th className="text-left p-4 font-medium">사용자</th>
+                <th className="text-left p-4 font-medium">생성일</th>
+                <th className="text-left p-4 font-medium">작업</th>
               </tr>
             </thead>
             <tbody>
@@ -413,7 +413,7 @@ export default function JobMonitoringPage() {
                     <td className="p-4 text-muted-foreground text-sm">{job.fileName}</td>
                     <td className="p-4 text-sm">
                       <span className="bg-muted/50 px-2 py-1 rounded text-xs font-medium">
-                        {job.type === 'OCR_TEXT' ? 'OCR Text' : 'Image Extraction'}
+                        {job.type === 'OCR_TEXT' ? 'OCR 텍스트' : '이미지 추출'}
                       </span>
                     </td>
                     <td className="p-4">
@@ -439,7 +439,7 @@ export default function JobMonitoringPage() {
                             handleJobClick(job)
                           }}
                         >
-                          Details
+                          상세
                         </Button>
                         {job.status === 'failed' && (
                           <Button
@@ -460,7 +460,7 @@ export default function JobMonitoringPage() {
               ) : (
                 <tr>
                   <td colSpan={7} className="p-4 text-center text-muted-foreground">
-                    No jobs found
+                    작업을 찾을 수 없습니다
                   </td>
                 </tr>
               )}
@@ -471,9 +471,8 @@ export default function JobMonitoringPage() {
         {/* Pagination - FIXED STRUCTURE */}
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">
-            Showing {paginatedJobs.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0}-
-            {Math.min(currentPage * itemsPerPage, filteredJobs.length)} of{' '}
-            {filteredJobs.length} jobs
+            전체 {filteredJobs.length}개 중 {paginatedJobs.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0}-
+            {Math.min(currentPage * itemsPerPage, filteredJobs.length)}개 표시
           </p>
           <div className="flex gap-2">
             <Button
@@ -482,7 +481,7 @@ export default function JobMonitoringPage() {
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(currentPage - 1)}
             >
-              Previous
+              이전
             </Button>
             <Button
               variant="outline"
@@ -490,7 +489,7 @@ export default function JobMonitoringPage() {
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage(currentPage + 1)}
             >
-              Next
+              다음
             </Button>
           </div>
         </div>
@@ -501,7 +500,7 @@ export default function JobMonitoringPage() {
         {selectedJob && (
           <>
             <ModalHeader>
-              <ModalTitle>Job Details - {selectedJob.id}</ModalTitle>
+              <ModalTitle>작업 상세 - {selectedJob.id}</ModalTitle>
               <ModalClose onClose={handleCloseModal} />
             </ModalHeader>
 
@@ -509,33 +508,33 @@ export default function JobMonitoringPage() {
               {/* Job Summary */}
               <div className="grid grid-cols-2 gap-4 pb-4 border-b border-border">
                 <div>
-                  <p className="text-xs text-muted-foreground">File</p>
+                  <p className="text-xs text-muted-foreground">파일</p>
                   <p className="font-medium text-sm">{selectedJob.fileName}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Type</p>
+                  <p className="text-xs text-muted-foreground">유형</p>
                   <p className="font-medium text-sm">
-                    {selectedJob.type === 'OCR_TEXT' ? 'OCR Text' : 'Image Extraction'}
+                    {selectedJob.type === 'OCR_TEXT' ? 'OCR 텍스트' : '이미지 추출'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">User</p>
+                  <p className="text-xs text-muted-foreground">사용자</p>
                   <p className="font-medium text-sm">{selectedJob.userName}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Status</p>
+                  <p className="text-xs text-muted-foreground">상태</p>
                   <div className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${getStatusBadgeClasses(selectedJob.status)}`}>
                     {getStatusIcon(selectedJob.status)}
                     <span className="capitalize">{selectedJob.status}</span>
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Created</p>
+                  <p className="text-xs text-muted-foreground">생성일</p>
                   <p className="font-medium text-sm">{selectedJob.createdAt}</p>
                 </div>
                 {selectedJob.completedAt && (
                   <div>
-                    <p className="text-xs text-muted-foreground">Completed</p>
+                    <p className="text-xs text-muted-foreground">완료일</p>
                     <p className="font-medium text-sm">{selectedJob.completedAt}</p>
                   </div>
                 )}
@@ -544,20 +543,20 @@ export default function JobMonitoringPage() {
               {/* Progress Bar */}
               {selectedJob.status === 'processing' && (
                 <div className="py-4 border-b border-border">
-                  <p className="text-xs text-muted-foreground mb-2">Progress</p>
+                  <p className="text-xs text-muted-foreground mb-2">진행률</p>
                   <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                     <div
                       className="bg-primary h-full transition-all duration-300"
                       style={{ width: `${selectedJob.progress}%` }}
                     />
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2">{selectedJob.progress}% complete</p>
+                  <p className="text-xs text-muted-foreground mt-2">{selectedJob.progress}% 완료</p>
                 </div>
               )}
 
               {/* Execution Steps */}
               <div className="py-4 border-b border-border">
-                <h3 className="font-semibold text-sm mb-4">Execution Steps</h3>
+                <h3 className="font-semibold text-sm mb-4">실행 단계</h3>
                 <div className="space-y-3">
                   {selectedJob.steps.map((step) => (
                     <div key={step.id} className="flex gap-3">
@@ -589,7 +588,7 @@ export default function JobMonitoringPage() {
                   <div className="flex gap-2">
                     <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-semibold text-sm text-destructive mb-1">Error</h4>
+                      <h4 className="font-semibold text-sm text-destructive mb-1">오류</h4>
                       <p className="text-sm text-destructive/90">{selectedJob.error}</p>
                     </div>
                   </div>
@@ -599,7 +598,7 @@ export default function JobMonitoringPage() {
 
             <ModalFooter>
               <Button variant="outline" onClick={handleCloseModal}>
-                Close
+                닫기
               </Button>
               {selectedJob.status === 'failed' && (
                 <Button
@@ -607,7 +606,7 @@ export default function JobMonitoringPage() {
                   onClick={() => handleRetryJob(selectedJob.id)}
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Retry Job
+                  작업 재시도
                 </Button>
               )}
               {(selectedJob.status === 'pending' || selectedJob.status === 'processing') && (
@@ -615,7 +614,7 @@ export default function JobMonitoringPage() {
                   variant="destructive"
                   onClick={() => handleCancelJob(selectedJob.id)}
                 >
-                  Cancel Job
+                  작업 취소
                 </Button>
               )}
             </ModalFooter>

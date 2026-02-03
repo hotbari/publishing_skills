@@ -80,7 +80,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
       <div className="flex items-center justify-center py-12">
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
-          <p className="text-muted-foreground">Loading images...</p>
+          <p className="text-muted-foreground">이미지 로딩 중...</p>
         </div>
       </div>
     );
@@ -89,13 +89,13 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
   if (error) {
     return (
       <div className="bg-destructive/10 border border-destructive rounded-lg p-6 text-center">
-        <p className="text-destructive font-medium">Error loading images</p>
+        <p className="text-destructive font-medium">이미지 로딩 오류</p>
         <p className="text-sm text-muted-foreground mt-2">{error}</p>
         <button
           onClick={loadImages}
           className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
         >
-          Try Again
+          다시 시도
         </button>
       </div>
     );
@@ -117,9 +117,9 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
-        <p className="text-lg font-medium text-foreground">No images found</p>
+        <p className="text-lg font-medium text-foreground">이미지를 찾을 수 없습니다</p>
         <p className="text-sm text-muted-foreground mt-2">
-          This file doesn't have any extracted images yet.
+          이 파일에는 아직 추출된 이미지가 없습니다.
         </p>
       </div>
     );
@@ -130,7 +130,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
       {/* Filter Bar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-foreground">Filter by type:</span>
+          <span className="text-sm font-medium text-foreground">유형별 필터:</span>
           <div className="flex gap-2">
             <button
               onClick={() => setImageTypeFilter('ALL')}
@@ -141,7 +141,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                   : 'bg-muted text-muted-foreground hover:bg-muted/80'
               )}
             >
-              All ({images.length})
+              전체 ({images.length})
             </button>
             <button
               onClick={() => setImageTypeFilter('EMBEDDED')}
@@ -152,7 +152,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                   : 'bg-muted text-muted-foreground hover:bg-muted/80'
               )}
             >
-              Embedded ({images.filter((img) => img.imageType === 'EMBEDDED').length})
+              임베디드 ({images.filter((img) => img.imageType === 'EMBEDDED').length})
             </button>
             <button
               onClick={() => setImageTypeFilter('RENDERED')}
@@ -163,20 +163,20 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                   : 'bg-muted text-muted-foreground hover:bg-muted/80'
               )}
             >
-              Rendered ({images.filter((img) => img.imageType === 'RENDERED').length})
+              렌더링됨 ({images.filter((img) => img.imageType === 'RENDERED').length})
             </button>
           </div>
         </div>
 
         <div className="text-sm text-muted-foreground">
-          Showing {filteredImages.length} of {images.length} images
+          전체 {images.length}개 중 {filteredImages.length}개 이미지 표시
         </div>
       </div>
 
       {/* Thumbnail Grid */}
       {filteredImages.length === 0 ? (
         <div className="bg-muted/30 rounded-lg p-8 text-center">
-          <p className="text-muted-foreground">No images match the selected filter</p>
+          <p className="text-muted-foreground">선택한 필터와 일치하는 이미지가 없습니다</p>
         </div>
       ) : (
         <div className="grid grid-cols-4 gap-6">
@@ -215,7 +215,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                   {/* Page Number Badge */}
                   {image.pageNo && (
                     <span className="inline-flex items-center px-2 py-1 rounded bg-muted text-muted-foreground text-xs font-medium">
-                      Page {image.pageNo}
+                      페이지 {image.pageNo}
                       {image.indexInPage !== undefined && ` (${image.indexInPage + 1})`}
                     </span>
                   )}
@@ -224,19 +224,19 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                 {/* Image Details */}
                 <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex items-center justify-between">
-                    <span>Dimensions:</span>
+                    <span>크기:</span>
                     <span className="font-medium text-foreground">
                       {image.width} × {image.height}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Format:</span>
+                    <span>형식:</span>
                     <span className="font-medium text-foreground uppercase">
                       {image.format}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Size:</span>
+                    <span>파일 크기:</span>
                     <span className="font-medium text-foreground">
                       {formatFileSize(image.sizeBytes)}
                     </span>
@@ -266,7 +266,7 @@ export function ImageGallery({ fileId, className }: ImageGalleryProps) {
                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                     />
                   </svg>
-                  <p className="text-sm font-medium">Click to view</p>
+                  <p className="text-sm font-medium">클릭하여 보기</p>
                 </div>
               </div>
             </div>

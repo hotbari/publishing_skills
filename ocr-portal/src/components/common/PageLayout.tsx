@@ -10,12 +10,12 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Files', path: '/files', roles: ['USER', 'ADMIN'] },
-  { label: 'Admin Dashboard', path: '/admin', roles: ['ADMIN'] },
-  { label: 'Users', path: '/admin/users', roles: ['ADMIN'] },
-  { label: 'Policies', path: '/admin/policies', roles: ['ADMIN'] },
-  { label: 'Jobs', path: '/admin/jobs', roles: ['ADMIN'] },
-  { label: 'Audit Logs', path: '/admin/audit-logs', roles: ['ADMIN'] },
+  { label: '파일', path: '/files', roles: ['USER', 'ADMIN'] },
+  { label: '관리자 대시보드', path: '/admin', roles: ['ADMIN'] },
+  { label: '사용자', path: '/admin/users', roles: ['ADMIN'] },
+  { label: '정책', path: '/admin/policies', roles: ['ADMIN'] },
+  { label: '작업', path: '/admin/jobs', roles: ['ADMIN'] },
+  { label: '감사 로그', path: '/admin/audit-logs', roles: ['ADMIN'] },
 ];
 
 interface PageLayoutProps {
@@ -91,7 +91,7 @@ export function PageLayout({ children }: PageLayoutProps) {
               {user?.username} ({user?.role})
             </div>
             <Button variant="ghost" size="sm" onClick={logout}>
-              Logout
+              로그아웃
             </Button>
           </div>
         </div>

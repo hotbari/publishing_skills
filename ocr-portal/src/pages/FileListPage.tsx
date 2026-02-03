@@ -75,12 +75,12 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
     e.preventDefault()
 
     if (!selectedFile) {
-      setError('Please select a file')
+      setError('파일을 선택하세요')
       return
     }
 
     if (!title.trim()) {
-      setError('Please enter a title')
+      setError('제목을 입력하세요')
       return
     }
 
@@ -101,7 +101,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
       )
 
       if (!urlResponse.success || !urlResponse.data) {
-        throw new Error(urlResponse.error || 'Failed to get upload URL')
+        throw new Error(urlResponse.error || '업로드 URL을 가져오지 못했습니다')
       }
 
       const { uploadUrl, fileId } = urlResponse.data
@@ -116,7 +116,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
       })
 
       if (!uploadResult.ok) {
-        throw new Error('Failed to upload file')
+        throw new Error('파일 업로드에 실패했습니다')
       }
 
       // Step 3: Confirm upload
@@ -127,7 +127,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
       resetForm()
       onClose()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Upload failed')
+      setError(err instanceof Error ? err.message : '업로드에 실패했습니다')
     } finally {
       setUploading(false)
     }
@@ -147,9 +147,9 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-card border border-border rounded-lg shadow-lg w-full max-w-2xl mx-4">
         <div className="border-b border-border p-6">
-          <h2 className="text-2xl font-semibold">Upload File</h2>
+          <h2 className="text-2xl font-semibold">파일 업로드</h2>
           <p className="text-muted-foreground mt-2">
-            Upload a PDF file for OCR and image extraction
+            OCR 및 이미지 추출을 위한 PDF 파일을 업로드하세요
           </p>
         </div>
 
@@ -157,7 +157,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
           {/* File Upload Area */}
           <div>
             <label className="block text-sm font-medium mb-2">
-              File <span className="text-destructive">*</span>
+              파일 <span className="text-destructive">*</span>
             </label>
             <div
               className={cn(
@@ -193,15 +193,15 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
                     onClick={() => setSelectedFile(null)}
                     disabled={uploading}
                   >
-                    Change File
+                    파일 변경
                   </Button>
                 </div>
               ) : (
                 <div className="space-y-4">
                   <div className="text-4xl">📄</div>
                   <div>
-                    <p className="text-lg font-medium">Drop file here or click to browse</p>
-                    <p className="text-sm text-muted-foreground mt-1">PDF files only</p>
+                    <p className="text-lg font-medium">파일을 여기에 드래그하거나 클릭하여 선택하세요</p>
+                    <p className="text-sm text-muted-foreground mt-1">PDF 파일만 가능</p>
                   </div>
                   <Button
                     type="button"
@@ -209,7 +209,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
                     size="sm"
                     onClick={() => document.getElementById('file-upload')?.click()}
                   >
-                    Select File
+                    파일 선택
                   </Button>
                 </div>
               )}
@@ -219,13 +219,13 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
           {/* Title */}
           <div>
             <label htmlFor="title" className="block text-sm font-medium mb-2">
-              Title <span className="text-destructive">*</span>
+              제목 <span className="text-destructive">*</span>
             </label>
             <Input
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter file title"
+              placeholder="파일 제목을 입력하세요"
               disabled={uploading}
             />
           </div>
@@ -233,30 +233,30 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
           {/* Tags */}
           <div>
             <label htmlFor="tags" className="block text-sm font-medium mb-2">
-              Tags
+              태그
             </label>
             <Input
               id="tags"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              placeholder="Enter tags separated by commas"
+              placeholder="쉼표로 구분하여 태그를 입력하세요"
               disabled={uploading}
             />
             <p className="text-xs text-muted-foreground mt-2">
-              Example: invoice, 2024, client-abc
+              예시: 청구서, 2024, 거래처-abc
             </p>
           </div>
 
           {/* Description */}
           <div>
             <label htmlFor="description" className="block text-sm font-medium mb-2">
-              Description
+              설명
             </label>
             <textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter file description (optional)"
+              placeholder="파일 설명을 입력하세요 (선택사항)"
               disabled={uploading}
               className={cn(
                 'flex min-h-[80px] w-full rounded-md border border-input bg-background px-4 py-2',
@@ -281,7 +281,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
               type="submit"
               disabled={uploading}
             >
-              {uploading ? 'Uploading...' : 'Upload'}
+              {uploading ? '업로드 중...' : '업로드'}
             </Button>
             <Button
               type="button"
@@ -292,7 +292,7 @@ function UploadModal({ isOpen, onClose, onUploadSuccess }: UploadModalProps) {
               }}
               disabled={uploading}
             >
-              Cancel
+              취소
             </Button>
           </div>
         </form>
@@ -312,12 +312,12 @@ function StatusBadge({ status }: { status: FileDisplayStatus }) {
   }
 
   const labels = {
-    STORED: 'Stored',
-    OCR_DONE: 'OCR Complete',
-    IMG_DONE: 'Images Extracted',
-    OCR_FAIL: 'OCR Failed',
-    IMG_FAIL: 'Image Extraction Failed',
-    PROCESSING: 'Processing'
+    STORED: '저장됨',
+    OCR_DONE: 'OCR 완료',
+    IMG_DONE: '이미지 추출 완료',
+    OCR_FAIL: 'OCR 실패',
+    IMG_FAIL: '이미지 추출 실패',
+    PROCESSING: '처리 중'
   }
 
   return (
@@ -403,7 +403,7 @@ function FileListPage() {
   }, [page, searchQuery, statusFilter, startDate, endDate])
 
   const handleDelete = async (fileId: string) => {
-    if (!confirm('Are you sure you want to delete this file?')) {
+    if (!confirm('이 파일을 삭제하시겠습니까?')) {
       return
     }
 
@@ -455,13 +455,13 @@ function FileListPage() {
         {/* Page Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-semibold">My Files</h1>
+            <h1 className="text-3xl font-semibold">내 파일</h1>
             <p className="text-muted-foreground mt-2">
-              Manage your uploaded documents and view processing status
+              업로드한 문서를 관리하고 처리 상태를 확인하세요
             </p>
           </div>
           <Button onClick={() => setUploadModalOpen(true)}>
-            Upload File
+            파일 업로드
           </Button>
         </div>
 
@@ -469,7 +469,7 @@ function FileListPage() {
         <div className="flex gap-4 flex-wrap">
           <div className="flex-1 min-w-[300px]">
             <Input
-              placeholder="Search files by title or tags..."
+              placeholder="제목이나 태그로 파일 검색..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -483,12 +483,12 @@ function FileListPage() {
               'text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
             )}
           >
-            <option value="all">All Status</option>
-            <option value="STORED">Stored</option>
-            <option value="OCR_DONE">OCR Complete</option>
-            <option value="IMG_DONE">Images Extracted</option>
-            <option value="OCR_FAIL">OCR Failed</option>
-            <option value="IMG_FAIL">Image Extraction Failed</option>
+            <option value="all">전체 상태</option>
+            <option value="STORED">저장됨</option>
+            <option value="OCR_DONE">OCR 완료</option>
+            <option value="IMG_DONE">이미지 추출 완료</option>
+            <option value="OCR_FAIL">OCR 실패</option>
+            <option value="IMG_FAIL">이미지 추출 실패</option>
           </select>
 
           <input
@@ -518,17 +518,17 @@ function FileListPage() {
         <div className="border rounded-lg overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-muted-foreground">
-              Loading files...
+              파일 로딩 중...
             </div>
           ) : files.length === 0 ? (
             <div className="p-12 text-center">
               <div className="text-6xl mb-4">📁</div>
-              <h3 className="text-xl font-semibold mb-2">No files yet</h3>
+              <h3 className="text-xl font-semibold mb-2">아직 파일이 없습니다</h3>
               <p className="text-muted-foreground mb-6">
-                Upload your first file to get started with OCR and image extraction
+                첫 번째 파일을 업로드하여 OCR 및 이미지 추출을 시작하세요
               </p>
               <Button onClick={() => setUploadModalOpen(true)}>
-                Upload File
+                파일 업로드
               </Button>
             </div>
           ) : (
@@ -536,11 +536,11 @@ function FileListPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border bg-muted/50">
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Name</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Size</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Upload Date</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold">Actions</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">이름</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">상태</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">크기</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">업로드 날짜</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold">작업</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -588,21 +588,21 @@ function FileListPage() {
                               window.location.href = `/files/${file._id}`
                             }}
                           >
-                            View
+                            보기
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => handleDownload(file)}
                           >
-                            Download
+                            다운로드
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => handleDelete(file._id)}
                           >
-                            Delete
+                            삭제
                           </Button>
                         </div>
                       </td>
@@ -618,7 +618,7 @@ function FileListPage() {
         {!loading && files.length > 0 && (
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
-              Showing {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, total)} of {total}
+              전체 {total}개 중 {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, total)}개 표시
             </p>
             <div className="flex gap-2">
               <Button
@@ -627,10 +627,10 @@ function FileListPage() {
                 onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
               >
-                Previous
+                이전
               </Button>
               <div className="flex items-center px-4 text-sm">
-                Page {page} of {totalPages}
+                {page} / {totalPages} 페이지
               </div>
               <Button
                 variant="outline"
@@ -638,7 +638,7 @@ function FileListPage() {
                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
               >
-                Next
+                다음
               </Button>
             </div>
           </div>

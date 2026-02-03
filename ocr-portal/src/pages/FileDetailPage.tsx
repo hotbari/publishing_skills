@@ -63,7 +63,7 @@ export default function FileDetailPage() {
       ]);
 
       if (!fileResponse.success || !fileResponse.data) {
-        setError(fileResponse.error || 'Failed to load file');
+        setError(fileResponse.error || '파일을 불러오지 못했습니다');
         return;
       }
 
@@ -73,7 +73,7 @@ export default function FileDetailPage() {
         setJobs(jobsResponse.data);
       }
     } catch (err) {
-      setError('An error occurred while loading file data');
+      setError('파일 데이터를 불러오는 중 오류가 발생했습니다');
     } finally {
       setLoading(false);
     }
@@ -138,7 +138,7 @@ export default function FileDetailPage() {
   };
 
   const handleDelete = async () => {
-    if (!fileId || !window.confirm('Are you sure you want to delete this file?')) return;
+    if (!fileId || !window.confirm('이 파일을 삭제하시겠습니까?')) return;
 
     try {
       const response = await fileService.deleteFile(fileId);
@@ -179,10 +179,10 @@ export default function FileDetailPage() {
         <div className="space-y-6">
           <Button variant="ghost" size="sm" onClick={() => navigate('/files')}>
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Files
+            파일 목록으로
           </Button>
           <div className="border rounded-lg p-8 bg-card text-center">
-            <p className="text-destructive">{error || 'File not found'}</p>
+            <p className="text-destructive">{error || '파일을 찾을 수 없습니다'}</p>
           </div>
         </div>
       </PageLayout>
@@ -221,48 +221,48 @@ export default function FileDetailPage() {
   const tabs = [
     {
       id: 'info',
-      label: 'Original File Info',
+      label: '원본 파일 정보',
       content: (
         <div className="space-y-6">
           {/* Metadata Card */}
           <div className="border rounded-lg overflow-hidden bg-card shadow-sm">
             <div className="border-b bg-muted/30 px-6 py-4">
-              <h2 className="text-lg font-semibold">File Metadata</h2>
+              <h2 className="text-lg font-semibold">파일 메타데이터</h2>
             </div>
             <dl className="grid grid-cols-2 gap-6 p-6">
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Title
+                  제목
                 </dt>
                 <dd className="text-sm">{file.metadata.title}</dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  File Name
+                  파일명
                 </dt>
                 <dd className="text-sm font-mono text-xs">{file.originalFileName}</dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Content Type
+                  콘텐츠 유형
                 </dt>
                 <dd className="text-sm">{file.contentType}</dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Size
+                  크기
                 </dt>
                 <dd className="text-sm">{formatBytes(file.sizeBytes)}</dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Uploaded
+                  업로드 날짜
                 </dt>
                 <dd className="text-sm">{formatDate(file.createdAt)}</dd>
               </div>
               <div>
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Status
+                  상태
                 </dt>
                 <dd className="text-sm">
                   <span
@@ -278,7 +278,7 @@ export default function FileDetailPage() {
               </div>
               <div className="col-span-2">
                 <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                  Tags
+                  태그
                 </dt>
                 <dd className="flex gap-2 flex-wrap mt-2">
                   {file.metadata.tags.map((tag) => (
@@ -294,7 +294,7 @@ export default function FileDetailPage() {
               {file.metadata.description && (
                 <div className="col-span-2">
                   <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                    Description
+                    설명
                   </dt>
                   <dd className="text-sm">{file.metadata.description}</dd>
                 </div>
@@ -306,7 +306,7 @@ export default function FileDetailPage() {
           <div className="flex justify-end">
             <Button variant="outline" onClick={handleDownload}>
               <Download className="w-4 h-4 mr-2" />
-              Download Original File
+              원본 파일 다운로드
             </Button>
           </div>
         </div>
@@ -314,7 +314,7 @@ export default function FileDetailPage() {
     },
     {
       id: 'ocr',
-      label: 'OCR Text',
+      label: 'OCR 텍스트',
       content: (
         <div className="space-y-6">
           {/* Run OCR Button */}
@@ -322,21 +322,21 @@ export default function FileDetailPage() {
             <div className="border rounded-lg p-8 bg-card text-center space-y-4">
               <FileText className="w-12 h-12 mx-auto text-muted-foreground" />
               <div>
-                <h3 className="text-lg font-semibold mb-2">No OCR Results Yet</h3>
+                <h3 className="text-lg font-semibold mb-2">OCR 결과가 없습니다</h3>
                 <p className="text-sm text-muted-foreground">
-                  Run OCR to extract text from this document
+                  OCR을 실행하여 문서에서 텍스트를 추출하세요
                 </p>
               </div>
               <Button onClick={handleRunOcr} disabled={ocrRunning}>
                 {ocrRunning ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Running OCR...
+                    OCR 실행 중...
                   </>
                 ) : (
                   <>
                     <Play className="w-4 h-4 mr-2" />
-                    Run OCR
+                    OCR 실행
                   </>
                 )}
               </Button>
@@ -349,16 +349,16 @@ export default function FileDetailPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span>OCR completed on {formatDate(latestOcrJob.updatedAt)}</span>
+                  <span>OCR 완료: {formatDate(latestOcrJob.updatedAt)}</span>
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" onClick={handleRunOcr} disabled={ocrRunning}>
                     <RefreshCw className="w-4 h-4 mr-2" />
-                    Re-run OCR
+                    OCR 재실행
                   </Button>
                   <Button variant="outline" size="sm">
                     <Download className="w-4 h-4 mr-2" />
-                    Download Text
+                    텍스트 다운로드
                   </Button>
                 </div>
               </div>
@@ -366,11 +366,11 @@ export default function FileDetailPage() {
               {/* Text Viewer */}
               <div className="border rounded-lg bg-card overflow-hidden">
                 <div className="border-b bg-muted/30 px-6 py-4">
-                  <h3 className="text-sm font-semibold">Extracted Text</h3>
+                  <h3 className="text-sm font-semibold">추출된 텍스트</h3>
                 </div>
                 <div className="p-6">
                   <div className="bg-muted/20 rounded-md p-4 font-mono text-sm max-h-96 overflow-y-auto">
-                    {ocrText || 'This is sample OCR text extracted from the document. In a real implementation, this would show the actual extracted text content.'}
+                    {ocrText || '문서에서 추출된 샘플 OCR 텍스트입니다. 실제 구현에서는 추출된 실제 텍스트 내용이 표시됩니다.'}
                   </div>
                 </div>
               </div>
@@ -381,28 +381,28 @@ export default function FileDetailPage() {
     },
     {
       id: 'images',
-      label: 'Images',
+      label: '이미지',
       content: (
         <div className="space-y-6">
           {imageJobs.length === 0 && (
             <div className="border rounded-lg p-8 bg-card text-center space-y-4">
               <ImageIcon className="w-12 h-12 mx-auto text-muted-foreground" />
               <div>
-                <h3 className="text-lg font-semibold mb-2">No Images Extracted Yet</h3>
+                <h3 className="text-lg font-semibold mb-2">추출된 이미지가 없습니다</h3>
                 <p className="text-sm text-muted-foreground">
-                  Extract images from this document
+                  문서에서 이미지를 추출하세요
                 </p>
               </div>
               <Button onClick={handleExtractImages} disabled={imagesRunning}>
                 {imagesRunning ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Extracting...
+                    추출 중...
                   </>
                 ) : (
                   <>
                     <Play className="w-4 h-4 mr-2" />
-                    Extract Images
+                    이미지 추출
                   </>
                 )}
               </Button>
@@ -413,11 +413,11 @@ export default function FileDetailPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="text-sm text-muted-foreground">
-                  Image extraction jobs have been created. Check Job History tab for status.
+                  이미지 추출 작업이 생성되었습니다. 작업 내역 탭에서 상태를 확인하세요.
                 </div>
                 <Button variant="outline" size="sm" onClick={handleExtractImages} disabled={imagesRunning}>
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Re-extract
+                  재추출
                 </Button>
               </div>
 
@@ -436,13 +436,13 @@ export default function FileDetailPage() {
     },
     {
       id: 'history',
-      label: 'Job History',
+      label: '작업 내역',
       content: (
         <div className="space-y-4">
           {jobs.length === 0 ? (
             <div className="border rounded-lg p-8 bg-card text-center">
               <Clock className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-              <p className="text-sm text-muted-foreground">No jobs yet</p>
+              <p className="text-sm text-muted-foreground">아직 작업이 없습니다</p>
             </div>
           ) : (
             jobs.map((job) => (
@@ -453,10 +453,10 @@ export default function FileDetailPage() {
                     {getJobStatusIcon(job.status)}
                     <div>
                       <h3 className="text-sm font-semibold">
-                        {job.jobType === 'OCR_TEXT' ? 'OCR Text Extraction' : 'Image Extraction'}
+                        {job.jobType === 'OCR_TEXT' ? 'OCR 텍스트 추출' : '이미지 추출'}
                       </h3>
                       <p className="text-xs text-muted-foreground">
-                        Created {formatDate(job.createdAt)}
+                        생성일: {formatDate(job.createdAt)}
                       </p>
                     </div>
                   </div>
@@ -481,7 +481,7 @@ export default function FileDetailPage() {
                         onClick={() => handleRetryJob(job._id)}
                       >
                         <RefreshCw className="w-4 h-4 mr-2" />
-                        Retry
+                        재시도
                       </Button>
                     )}
                   </div>
@@ -491,7 +491,7 @@ export default function FileDetailPage() {
                 {job.steps.length > 0 && (
                   <div className="p-6">
                     <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                      Steps
+                      단계
                     </h4>
                     <div className="space-y-3">
                       {job.steps.map((step, index) => (
@@ -517,7 +517,7 @@ export default function FileDetailPage() {
                             )}
                             {step.startedAt && (
                               <p className="text-xs text-muted-foreground">
-                                Started: {formatDate(step.startedAt)}
+                                시작: {formatDate(step.startedAt)}
                               </p>
                             )}
                           </div>
@@ -540,7 +540,7 @@ export default function FileDetailPage() {
         {/* Back Navigation */}
         <Button variant="ghost" size="sm" onClick={() => navigate('/files')}>
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Files
+          파일 목록으로
         </Button>
 
         {/* Page Header */}
@@ -554,11 +554,11 @@ export default function FileDetailPage() {
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => navigate(`/files/${fileId}/edit`)}>
               <Edit className="w-4 h-4 mr-2" />
-              Edit Metadata
+              메타데이터 수정
             </Button>
             <Button variant="destructive" onClick={handleDelete}>
               <Trash2 className="w-4 h-4 mr-2" />
-              Delete
+              삭제
             </Button>
           </div>
         </div>

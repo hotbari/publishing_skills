@@ -148,10 +148,10 @@ export const TextViewer: React.FC<TextViewerProps> = ({
     return (
       <div className="rounded-md border border-dashed border-muted-foreground bg-muted/30 p-8 text-center space-y-4">
         <div className="text-muted-foreground text-base font-medium">
-          No OCR results available
+          OCR 결과가 없습니다
         </div>
         <p className="text-sm text-muted-foreground">
-          Click the "Run OCR" button to extract text from this document.
+          이 문서에서 텍스트를 추출하려면 "OCR 실행" 버튼을 클릭하세요.
         </p>
       </div>
     );
@@ -168,7 +168,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
             {extractedTexts.length > 1 ? (
               <div className="space-y-2">
                 <label htmlFor="version-select" className="text-sm font-medium text-foreground">
-                  OCR Version
+                  OCR 버전
                 </label>
                 <select
                   id="version-select"
@@ -183,7 +183,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
                 >
                   {extractedTexts.map((text) => (
                     <option key={text._id} value={text.version}>
-                      Version {text.version} (Latest)
+                      버전 {text.version} (최신)
                     </option>
                   ))}
                 </select>
@@ -199,7 +199,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
               size="md"
               className="w-full sm:w-auto"
             >
-              Download as .txt
+              .txt로 다운로드
             </Button>
           </div>
         </div>
@@ -207,18 +207,18 @@ export const TextViewer: React.FC<TextViewerProps> = ({
         {/* Search Input */}
         <div className="space-y-2">
           <label htmlFor="search-input" className="text-sm font-medium text-foreground">
-            Search in Text
+            텍스트 검색
           </label>
           <Input
             id="search-input"
             type="text"
-            placeholder="Search..."
+            placeholder="검색..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           {searchQuery && (
             <p className="text-xs text-muted-foreground">
-              Matches highlighted in yellow
+              일치하는 항목이 노란색으로 강조 표시됩니다
             </p>
           )}
         </div>
@@ -238,7 +238,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
         <div className="space-y-4">
           {/* Page Counter */}
           <div className="flex items-center justify-center text-sm text-muted-foreground">
-            Page {currentPage + 1} of {pageCount}
+            {currentPage + 1} / {pageCount} 페이지
           </div>
 
           {/* Navigation Buttons */}
@@ -249,7 +249,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
               variant="outline"
               size="md"
             >
-              Previous Page
+              이전 페이지
             </Button>
 
             {/* Page Input */}
@@ -278,7 +278,7 @@ export const TextViewer: React.FC<TextViewerProps> = ({
               variant="outline"
               size="md"
             >
-              Next Page
+              다음 페이지
             </Button>
           </div>
         </div>
@@ -288,18 +288,18 @@ export const TextViewer: React.FC<TextViewerProps> = ({
       {currentExtractedText && (
         <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground bg-muted/30 rounded-md p-4">
           <div>
-            <span className="font-medium text-foreground">Text Length:</span> {currentExtractedText.textLength.toLocaleString()} characters
+            <span className="font-medium text-foreground">텍스트 길이:</span> {currentExtractedText.textLength.toLocaleString()} 자
           </div>
           <div>
-            <span className="font-medium text-foreground">Granularity:</span> {granularity}
+            <span className="font-medium text-foreground">세분성:</span> {granularity}
           </div>
           {currentExtractedText.pageNo !== undefined && (
             <div>
-              <span className="font-medium text-foreground">Page:</span> {currentExtractedText.pageNo}
+              <span className="font-medium text-foreground">페이지:</span> {currentExtractedText.pageNo}
             </div>
           )}
           <div>
-            <span className="font-medium text-foreground">Extracted:</span> {new Date(currentExtractedText.createdAt).toLocaleDateString()}
+            <span className="font-medium text-foreground">추출일:</span> {new Date(currentExtractedText.createdAt).toLocaleDateString()}
           </div>
         </div>
       )}

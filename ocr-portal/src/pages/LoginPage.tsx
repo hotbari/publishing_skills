@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { Button, Input } from '../components/common';
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email('유효하지 않은 이메일 주소입니다'),
+  password: z.string().min(6, '비밀번호는 최소 6자 이상이어야 합니다'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -32,7 +32,7 @@ export default function LoginPage() {
       await login(data.email, data.password);
       navigate('/');
     } catch (err) {
-      setError('Login failed. Please check your credentials.');
+      setError('로그인에 실패했습니다. 자격 증명을 확인하세요.');
     }
   };
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
         <div className="text-center">
           <h1 className="text-3xl font-semibold">OCR Portal</h1>
           <p className="text-muted-foreground mt-2">
-            Sign in to access your files and OCR results
+            파일과 OCR 결과에 액세스하려면 로그인하세요
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export default function LoginPage() {
               {/* Email Field */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email <span className="text-destructive">*</span>
+                  이메일 <span className="text-destructive">*</span>
                 </label>
                 <Input
                   id="email"
@@ -76,12 +76,12 @@ export default function LoginPage() {
               {/* Password Field */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium mb-2">
-                  Password <span className="text-destructive">*</span>
+                  비밀번호 <span className="text-destructive">*</span>
                 </label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="비밀번호를 입력하세요"
                   {...register('password')}
                   error={errors.password?.message}
                 />
@@ -91,17 +91,17 @@ export default function LoginPage() {
             {/* Form Actions */}
             <div className="pt-4">
               <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? 'Signing in...' : 'Sign In'}
+                {isSubmitting ? '로그인 중...' : '로그인'}
               </Button>
             </div>
           </form>
 
           {/* Development Helper */}
           <div className="mt-4 p-3 rounded-md bg-muted text-xs">
-            <p className="font-medium mb-1">Development Mode:</p>
-            <p>Use any email with 'admin' for ADMIN role</p>
-            <p>Any other email for USER role</p>
-            <p>Password: minimum 6 characters</p>
+            <p className="font-medium mb-1">개발 모드:</p>
+            <p>'admin'이 포함된 이메일은 관리자 권한으로 로그인됩니다</p>
+            <p>그 외의 이메일은 일반 사용자 권한으로 로그인됩니다</p>
+            <p>비밀번호: 최소 6자 이상</p>
           </div>
         </div>
       </div>

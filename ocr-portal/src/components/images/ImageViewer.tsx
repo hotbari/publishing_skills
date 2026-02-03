@@ -163,8 +163,8 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
         <div className="flex-1">
           <ModalTitle>
             {image
-              ? `${image.imageType} Image - Page ${image.pageNo}`
-              : 'Loading image...'}
+              ? `${image.imageType} 이미지 - 페이지 ${image.pageNo}`
+              : '이미지 로딩 중...'}
           </ModalTitle>
           {image && (
             <p className="text-sm text-muted-foreground mt-1">
@@ -194,20 +194,20 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
                 onClick={handleZoomOut}
                 disabled={zoom <= 25}
                 className="p-2 rounded-md hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                title="Zoom out (- key)"
+                title="축소 (- 키)"
               >
                 <ZoomOut className="h-5 w-5" />
               </button>
 
               <span className="text-sm font-medium text-foreground min-w-[60px] text-center">
-                {fitToScreen ? 'Fit' : `${zoom}%`}
+                {fitToScreen ? '맞춤' : `${zoom}%`}
               </span>
 
               <button
                 onClick={handleZoomIn}
                 disabled={zoom >= 400}
                 className="p-2 rounded-md hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                title="Zoom in (+ key)"
+                title="확대 (+ 키)"
               >
                 <ZoomIn className="h-5 w-5" />
               </button>
@@ -220,7 +220,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
                   'p-2 rounded-md hover:bg-muted transition-colors',
                   fitToScreen && 'bg-primary text-primary-foreground hover:bg-primary/90'
                 )}
-                title="Fit to screen"
+                title="화면에 맞춤"
               >
                 {fitToScreen ? (
                   <Minimize2 className="h-5 w-5" />
@@ -237,7 +237,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
               className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Download className="h-5 w-5" />
-              <span>{downloading ? 'Downloading...' : 'Download'}</span>
+              <span>{downloading ? '다운로드 중...' : '다운로드'}</span>
             </button>
           </div>
         </div>
@@ -248,7 +248,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-4">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
-                <p className="text-muted-foreground">Loading image...</p>
+                <p className="text-muted-foreground">이미지 로딩 중...</p>
               </div>
             </div>
           )}
@@ -256,7 +256,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
           {error && (
             <div className="absolute inset-0 flex items-center justify-center p-6">
               <div className="bg-destructive/10 border border-destructive rounded-lg p-6 max-w-md">
-                <p className="text-destructive font-medium">Error loading image</p>
+                <p className="text-destructive font-medium">이미지 로딩 오류</p>
                 <p className="text-sm text-muted-foreground mt-2">{error}</p>
               </div>
             </div>
@@ -290,7 +290,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
                 <button
                   onClick={goToPrevious}
                   className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-background/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-background transition-colors"
-                  title="Previous image (← key)"
+                  title="이전 이미지 (← 키)"
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </button>
@@ -300,7 +300,7 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
                 <button
                   onClick={goToNext}
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-background/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-background transition-colors"
-                  title="Next image (→ key)"
+                  title="다음 이미지 (→ 키)"
                 >
                   <ChevronRight className="h-6 w-6" />
                 </button>
@@ -314,18 +314,18 @@ export function ImageViewer({ imageId, allImageIds, onClose }: ImageViewerProps)
           <div className="border-t border-border p-4 bg-muted/30">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div>
-                <div className="text-muted-foreground">Type</div>
+                <div className="text-muted-foreground">유형</div>
                 <div className="font-medium text-foreground">{image.imageType}</div>
               </div>
               <div>
-                <div className="text-muted-foreground">Page</div>
+                <div className="text-muted-foreground">페이지</div>
                 <div className="font-medium text-foreground">
                   {image.pageNo}
-                  {image.indexInPage !== undefined && ` (Image ${image.indexInPage + 1})`}
+                  {image.indexInPage !== undefined && ` (이미지 ${image.indexInPage + 1})`}
                 </div>
               </div>
               <div>
-                <div className="text-muted-foreground">Format</div>
+                <div className="text-muted-foreground">형식</div>
                 <div className="font-medium text-foreground">{image.format.toUpperCase()}</div>
               </div>
               <div>
