@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python .claude/skills/skill-creator/scripts/init_skill.py:*)",
+      "Bash($env:PYTHONIOENCODING=\"utf-8\")",
+      "Bash(python scripts/package_skill.py:*)",
+      "Bash(python -m zipfile:*)",
+      "Bash(python:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "context7"
+  ]
+}
