@@ -1,0 +1,43 @@
+import { forwardRef, type SelectHTMLAttributes } from 'react'
+import { cn } from '@/lib/utils'
+
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  error?: string
+  label?: string
+  options: Array<{ value: string; label: string }>
+}
+
+const Select = forwardRef<HTMLSelectElement, SelectProps>(
+  ({ className, error, label, options, ...props }, ref) => {
+    return (
+      <div className="w-full">
+        {label && (
+          <label className="block text-sm font-medium mb-2">
+            {label}
+            {props.required && <span className="text-destructive ml-1">*</span>}
+          </label>
+        )}
+        <select
+          className={cn(
+            'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50',
+            error && 'border-destructive focus-visible:ring-destructive',
+            className
+          )}
+          ref={ref}
+          {...props}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        {error && <p className="text-sm text-destructive mt-2">{error}</p>}
+      </div>
+    )
+  }
+)
+
+Select.displayName = 'Select'
+
+export { Select }

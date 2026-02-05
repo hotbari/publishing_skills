@@ -10,7 +10,13 @@
       "Bash(npm run build:*)",
       "Bash(npm install:*)",
       "Bash(npm run dev:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npx tailwindcss init -p)",
+      "Bash(npm exec:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(unzip:*)",
+      "Bash(zip:*)",
+      "Bash(tree:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
