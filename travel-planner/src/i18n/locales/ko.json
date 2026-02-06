@@ -1,0 +1,106 @@
+{
+  "common": {
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "수정",
+    "add": "추가",
+    "close": "닫기",
+    "confirm": "확인",
+    "back": "뒤로",
+    "next": "다음",
+    "previous": "이전",
+    "search": "검색",
+    "filter": "필터",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공"
+  },
+  "nav": {
+    "trips": "내 여행",
+    "planner": "플래너",
+    "places": "장소",
+    "templates": "템플릿"
+  },
+  "trip": {
+    "title": "여행 플래너",
+    "subtitle": "완벽한 여행을 계획하세요",
+    "createNew": "새 여행 만들기",
+    "name": "여행 이름",
+    "country": "목적지 국가",
+    "startDate": "시작일",
+    "endDate": "종료일",
+    "transport": "선호 이동수단",
+    "accommodation": "숙소",
+    "days": "일",
+    "places": "장소"
+  },
+  "place": {
+    "addPlace": "장소 추가",
+    "addFromMap": "지도에서 클릭",
+    "placeName": "장소 이름",
+    "description": "설명",
+    "category": "카테고리",
+    "businessHours": "영업시간",
+    "open": "오픈",
+    "close": "마감",
+    "duration": "예상 소요시간",
+    "cost": "예상 비용",
+    "saveAsTemplate": "템플릿으로 저장",
+    "categories": {
+      "restaurant": "음식점",
+      "museum": "박물관",
+      "attraction": "관광지",
+      "shopping": "쇼핑",
+      "nature": "자연",
+      "accommodation": "숙소",
+      "transport": "교통",
+      "other": "기타"
+    }
+  },
+  "itinerary": {
+    "timeline": "타임라인",
+    "day": "{{number}}일차",
+    "addItem": "일정에 추가",
+    "travelTime": "이동시간",
+    "startTime": "시작",
+    "endTime": "종료",
+    "notes": "메모",
+    "dragToReorder": "드래그하여 순서 변경",
+    "businessHoursStatus": {
+      "open": "영업중",
+      "closing": "마감 임박",
+      "closed": "영업종료"
+    }
+  },
+  "ai": {
+    "optimize": "일정 최적화",
+    "optimizeOnly": "최적화만",
+    "suggestAndOptimize": "추천 및 최적화",
+    "preview": "AI 제안",
+    "reasoning": "이유",
+    "apply": "변경 적용",
+    "reject": "거부",
+    "optimizing": "최적화 중...",
+    "suggestions": {
+      "reorder": "순서 변경:",
+      "add": "추가",
+      "remove": "제거",
+      "modify": "수정"
+    }
+  },
+  "map": {
+    "clickToAdd": "지도를 클릭하여 장소 추가",
+    "selectedPlace": "선택된 장소",
+    "routes": "경로"
+  },
+  "greetings": {
+    "default": "여행 플래너에 오신 것을 환영합니다"
+  },
+  "validation": {
+    "required": "필수 항목입니다",
+    "invalidDate": "잘못된 날짜",
+    "endBeforeStart": "종료일은 시작일 이후여야 합니다",
+    "invalidCoordinates": "잘못된 좌표"
+  }
+}

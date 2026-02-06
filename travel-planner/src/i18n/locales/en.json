@@ -1,0 +1,106 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "nav": {
+    "trips": "My Trips",
+    "planner": "Planner",
+    "places": "Places",
+    "templates": "Templates"
+  },
+  "trip": {
+    "title": "Travel Planner",
+    "subtitle": "Plan your perfect journey",
+    "createNew": "Create New Trip",
+    "name": "Trip Name",
+    "country": "Destination Country",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "transport": "Preferred Transport",
+    "accommodation": "Accommodation",
+    "days": "Days",
+    "places": "Places"
+  },
+  "place": {
+    "addPlace": "Add Place",
+    "addFromMap": "Click on Map",
+    "placeName": "Place Name",
+    "description": "Description",
+    "category": "Category",
+    "businessHours": "Business Hours",
+    "open": "Open",
+    "close": "Close",
+    "duration": "Estimated Duration",
+    "cost": "Estimated Cost",
+    "saveAsTemplate": "Save as Template",
+    "categories": {
+      "restaurant": "Restaurant",
+      "museum": "Museum",
+      "attraction": "Attraction",
+      "shopping": "Shopping",
+      "nature": "Nature",
+      "accommodation": "Accommodation",
+      "transport": "Transport",
+      "other": "Other"
+    }
+  },
+  "itinerary": {
+    "timeline": "Timeline",
+    "day": "Day {{number}}",
+    "addItem": "Add to Itinerary",
+    "travelTime": "Travel Time",
+    "startTime": "Start",
+    "endTime": "End",
+    "notes": "Notes",
+    "dragToReorder": "Drag to reorder",
+    "businessHoursStatus": {
+      "open": "Open",
+      "closing": "Closing Soon",
+      "closed": "Closed"
+    }
+  },
+  "ai": {
+    "optimize": "Optimize Schedule",
+    "optimizeOnly": "Optimize Only",
+    "suggestAndOptimize": "Suggest & Optimize",
+    "preview": "AI Suggestions",
+    "reasoning": "Reasoning",
+    "apply": "Apply Changes",
+    "reject": "Reject",
+    "optimizing": "Optimizing...",
+    "suggestions": {
+      "reorder": "Reorder to",
+      "add": "Add",
+      "remove": "Remove",
+      "modify": "Modify"
+    }
+  },
+  "map": {
+    "clickToAdd": "Click on the map to add a place",
+    "selectedPlace": "Selected Place",
+    "routes": "Routes"
+  },
+  "greetings": {
+    "default": "Welcome to Travel Planner"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidDate": "Invalid date",
+    "endBeforeStart": "End date must be after start date",
+    "invalidCoordinates": "Invalid coordinates"
+  }
+}

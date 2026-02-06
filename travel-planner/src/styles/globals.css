@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Frost Winter Theme - Dark Mode Only */
+@layer base {
+  :root {
+    --background: 215 28% 12%; /* Deep Night Blue */
+    --foreground: 210 40% 98%; /* Frost White */
+
+    --card: 217 33% 17%; /* Evening Slate */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 213 94% 68%; /* Frost Blue */
+    --primary-foreground: 215 28% 12%;
+
+    --secondary: 226 83% 81%; /* Lavender */
+    --secondary-foreground: 215 28% 12%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 43 96% 56%;
+    --warning-foreground: 215 28% 12%;
+
+    --border: 215 19% 25%;
+    --input: 215 19% 25%;
+    --ring: 213 94% 68%;
+
+    --radius: 8px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Pixel art aesthetic touches */
+  .pixel-border {
+    box-shadow:
+      0 0 0 2px var(--border),
+      inset 0 0 0 2px var(--border);
+    image-rendering: pixelated;
+  }
+
+  .pixel-corners {
+    clip-path: polygon(
+      0 2px,
+      2px 2px,
+      2px 0,
+      calc(100% - 2px) 0,
+      calc(100% - 2px) 2px,
+      100% 2px,
+      100% calc(100% - 2px),
+      calc(100% - 2px) calc(100% - 2px),
+      calc(100% - 2px) 100%,
+      2px 100%,
+      2px calc(100% - 2px),
+      0 calc(100% - 2px)
+    );
+  }
+
+  /* Frost glow effect */
+  .frost-glow {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-deep-night-500;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-evening-slate-300 rounded-md;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
+
+@layer components {
+  /* Leaflet overrides for dark theme */
+  .leaflet-container {
+    @apply bg-deep-night-400;
+  }
+
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip {
+    @apply bg-card text-card-foreground border border-border;
+  }
+
+  .leaflet-control-zoom a {
+    @apply bg-card text-foreground border-border;
+  }
+
+  .leaflet-control-zoom a:hover {
+    @apply bg-muted;
+  }
+
+  /* Timeline connector styles */
+  .timeline-connector {
+    position: relative;
+  }
+
+  .timeline-connector::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    @apply bg-border;
+  }
+
+  .timeline-item-active .timeline-connector::before {
+    @apply bg-primary;
+  }
+
+  /* Drag and drop states */
+  .dragging {
+    @apply opacity-50;
+  }
+
+  .drag-over {
+    @apply ring-2 ring-primary;
+  }
+}
+
+@layer utilities {
+  /* Text gradient utility */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    @apply border border-border;
+  }
+
+  /* Spacing utilities using 8px scale */
+  .space-section {
+    @apply space-y-6;
+  }
+
+  .space-content {
+    @apply space-y-4;
+  }
+
+  .space-compact {
+    @apply space-y-2;
+  }
+}
