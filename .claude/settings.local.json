@@ -16,7 +16,10 @@
       "Bash(npm uninstall:*)",
       "Bash(unzip:*)",
       "Bash(zip:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(dir:*)",
+      "Bash(git init:*)",
+      "Bash(bash:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
